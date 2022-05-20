@@ -1,0 +1,13 @@
+<% if current_user.HR %>
+  <h1 class="text-center text-muted my-3">社員の編集</h1>
+<% else %>
+  <h1 class="text-center text-muted my-3">パスワードの編集</h1>
+<% end %>
+
+<div class="my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <%= render partial: 'form', locals: {user: @user, iconlabel: @iconlabel} %>
+    </div>
+  </div>
+</div>

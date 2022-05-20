@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idnumber: MyString
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  image: MyString
+  workplace: MyString
+  retired: 
+  admin: 
+  root: 
+
+two:
+  idnumber: MyString
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  image: MyString
+  workplace: MyString
+  retired: 
+  admin: 
+  root: 

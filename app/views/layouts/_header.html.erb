@@ -1,0 +1,65 @@
+<header class="py-2">
+  <div class="container text-center">
+    <%= image_tag "/snv_digital.png", width: '20%', alt: "snvHR6" %>
+  </div>
+</header>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" role="navigation">
+  <div class="container">
+    <%= link_to 'SNV_digital', root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ">
+        <% if current_user %>
+        <li class="nav-item">
+          <%= link_to '申告・作成', portal_path, class:"nav-link active" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            作成履歴
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/posts">自己申告書</a></li>
+            <li><a class="dropdown-item" href="/careers">キャリアプラン</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'パスワードの編集', edit_user_path(current_user), class:"nav-link" %>
+        </li>
+        <% if current_user.root ==true || current_user.HR %>
+        <li class="nav-item">
+          <%= link_to '社員一覧', users_path, class:"nav-link" %>
+        </li>
+        <% end %>
+        <% if current_user.root? %>
+        <li class="nav-item">
+          <%= link_to '自己申告書詳細一覧', shows_posts_path, class:"nav-link" %>
+        </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to 'ログアウト', logout_path, method: :delete, class:"nav-link" %>
+        </li>
+        <% else %>
+        <li class="nav-item">
+          <%= link_to 'ログイン', login_path, class:"nav-link" %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <% if current_user %>
+    <% if current_user.root? %>
+    <div class="fw-bold text-white ml-auto"><%='ログインユーザー：' + current_user.name if current_user %>(root)</div>
+    <% elsif current_user.admin? %>
+    <div class="fw-bold text-white ml-auto"><%='ログインユーザー：' + current_user.name if current_user %>(admin)</div>
+    <% elsif current_user.HR? %>
+    <div class="fw-bold text-white ml-auto"><%='ログインユーザー：' + current_user.name if current_user %>(HR)</div>
+    <% else %>
+    <div class="fw-bold text-white ml-auto"><%='ログインユーザー：' + current_user.name if current_user %></div>
+    <% end %>
+    <% end %>
+  </div>
+</nav>

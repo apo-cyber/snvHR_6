@@ -1,0 +1,82 @@
+<h1 class="text-center text-muted my-3">キャリアプランの詳細</h1>
+<div class="my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <div class="nav justify-content-end">
+        <%= link_to 'キャリアプランの一覧', careers_path, class: "nav-link" %>
+      </div>
+      <div class='mb-3'>
+        <% unless current_user.root %>
+          <% if current_user.HR or current_user.admin %>
+            <% if @career.user==current_user %>
+              <%= link_to '編集', edit_career_path(@career), class: 'btn btn-primary shadow' %>
+              <%= link_to '削除', career_path(@career), class: 'btn btn-danger shadow', method: :delete, data: {confirm: '本当に削除しますか？'} %>
+            <% end %>
+          <% else %>
+            <%= link_to '編集', edit_career_path(@career), class: 'btn btn-primary shadow' %>
+            <%= link_to '削除', career_path(@career), class: 'btn btn-danger shadow', method: :delete, data: {confirm: '本当に削除しますか？'} %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <table class="table table-striped table-hover table-borderless shadow">
+        <tbody>
+          <thead>
+            <tr>
+              <th class="col-4 text-center">項　目</th>
+              <th class="col-4 text-center">回　答</th>
+            </tr>
+          </thead>
+          <tr>
+            <th class='fw-bold text-primary'><%= Career.human_attribute_name(:name) %></th>
+            <td class='fw-bold text-primary'><%= @career.name %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:workplace)%></th>
+            <td><%= @career.workplace %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career1)%></th>
+            <td><%=auto_link(simple_format(h(@career.career1), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career2)%></th>
+            <td><%=auto_link(simple_format(h(@career.career2), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career3)%></th>
+            <td><%=auto_link(simple_format(h(@career.career3), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career4)%></th>
+            <td><%=auto_link(simple_format(h(@career.career4), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career5)%></th>
+            <td><%=auto_link(simple_format(h(@career.career5), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career6)%></th>
+            <td><%=auto_link(simple_format(h(@career.career6), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career7)%></th>
+            <td><%=auto_link(simple_format(h(@career.career7), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career8)%></th>
+            <td><%= auto_link(simple_format(h(@career.career8), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:career9)%></th>
+            <td><%= auto_link(simple_format(h(@career.career9), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Career.human_attribute_name(:created_at)%></th>
+            <td><%= @career.created_at.strftime("%Y年%m月%d日")  %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

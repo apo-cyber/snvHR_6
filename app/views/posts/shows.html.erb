@@ -1,0 +1,137 @@
+<h1 class="text-center text-muted my-3"><%= @fiscal_year%>年度　自己申告の詳細（全社員）</h1>
+<div class="my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <%= search_form_for @q, url: shows_posts_path, class: 'mb-1' do |f| %>
+        <div class="row justify-content-md-center py-1">
+          <div class="col-md-2">
+            <%= image_tag '/sc.svg', size:'30x30'  %>
+            <%= f.submit class: 'btn btn-outline-primary shadow' %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.search_field :name_or_workplace_or_post1_or_post2_or_post3_or_post4_or_post5_or_post6_or_post7_or_post8_or_post9_or_post10_or_post11_or_post12_or_post13_or_post14_or_post15_or_post16_or_post17_or_post18_or_post19_or_post20_or_post21_or_post22_cont, class: 'form-control ', placeholder: '（例）社員名・部署・申告内容など'%>
+          </div>
+        </div>
+        <% end %>
+
+      <div class="mt-4 pagination flex-wrap">
+        <%= paginate @posts, theme: 'bootstrap-5' %>
+      </div>
+      <% @posts.each do |post|%>
+        <table class="table table-striped table-hover table-borderless shadow">
+          <thead>
+            <tr>
+              <th class="col-4 text-center">項　目</th>
+              <th class="col-4 text-center">回　答</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class='fw-bold text-primary'><%= Post.human_attribute_name(:name) %></th>
+              <td class='fw-bold text-primary'><%= post.name %></td>
+            </tr>
+
+            <tr>
+              <th><%=Post.human_attribute_name(:workplace)%></th>
+              <td><%= post.workplace %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post1)%>
+              <td><%=auto_link(simple_format(h(post.post1), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post2)%></th>
+              <td><%= post.post2 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post3)%></th>
+              <td><%= post.post3 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post4)%></th>
+              <td><%= post.post4 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post5)%></th>
+              <td><%= post.post5 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post6)%></th>
+              <td><%= post.post6 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post7)%></th>
+              <td><%= post.post7 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post8)%></th>
+              <td><%= post.post8 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post9)%></th>
+              <td><%=auto_link(simple_format(h(post.post9), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post10)%></th>
+              <td><%= post.post10 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post11)%></th>
+              <td><%= post.post11 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post12)%></th>
+              <td><%=auto_link(simple_format(h(post.post12), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post13)%></th>
+              <td><%=post.post13 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post14)%></th>
+              <td><%= post.post14 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post15)%></th>
+              <td><%=auto_link(simple_format(h(post.post15), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post16)%></th>
+              <td><%=auto_link(simple_format(h(post.post16), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post17)%></th>
+              <td><%=post.post17 %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post18)%></th>
+              <td><%=post.post18 %></td>
+            <tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post19)%></th>
+              <td><%=auto_link(simple_format(h(post.post19), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post20)%></th>
+              <td><%=auto_link(simple_format(h(post.post20), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post21)%></th>
+              <td><%=auto_link(simple_format(h(post.post21), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:post22)%></th>
+              <td><%=auto_link(simple_format(h(post.post22), {}, sanitize: false, wrapper_tag: "div")) %></td>
+            </tr>
+            <tr>
+              <th><%=Post.human_attribute_name(:created_at)%></th>
+              <td><%= post.created_at.strftime("%Y年%m月%d日") %></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="placeholder-glow placeholder-xs">
+          <span class="placeholder col-12 bg-success placeholder-xs"></span></p>
+      <% end %>
+    </div>
+  </div>
+</div>

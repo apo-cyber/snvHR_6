@@ -1,0 +1,35 @@
+
+<h1 class="text-center text-success fw-bold my-3"><%= @fiscal_year %>年度 自己申告書・キャリプラン</h1>
+<section class="my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-10 mb-3">
+      <h2 class="mb-3 text-center"> - 自己申告書とキャリアプランについて - </h2>
+      <ul>
+        <li>自己申告書：原則、１年に１回のタイミングで、従業員の皆様の希望や意見を率直にお聞きすることを目的としています。本音で社長に語ろう！</li>
+        <li>キャリアプラン：自分がなりたい将来像をキャリアプランの中で、意思表示できる場づくりを提供します。是非ご活用ください。</li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <%= image_tag '/cover.png', class:"img-fluid", alt:"Apoの写真" %>
+        <div class="card-body d-flex justify-content-between">
+          <h4 class="card-title text-primary fw-bold">自己申告書</h4>
+          <%= button_to '申告する', new_post_path, method: :get, class:'btn btn-warning shadow' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <%= image_tag '/career.png', class:"img-fluid", alt:"Apoの写真" %>
+        <div class="card-body d-flex justify-content-between">
+          <h4 class="card-title text-primary fw-bold">キャリアプラン</h4>
+          <%= button_to '作成する', new_career_path, method: :get, class:'btn btn-warning shadow' %>
+        </div>
+      </div>
+    </div>
+      <div class="col-md-3">
+      <%= image_tag '/img_quality02.jpg', class:"img-fluid", alt:"品質の写真" %>
+      <h4 class='text-center fw-bold pt-4'>人が創る品質<br>人を大切にする経営</h4>
+    </div>
+  </div>
+</section>

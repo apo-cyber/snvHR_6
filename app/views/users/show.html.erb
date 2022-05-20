@@ -1,0 +1,85 @@
+<h1 class="text-center text-muted my-3">社員の詳細</h1>
+
+<div class="my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <% if current_user.HR==true or current_user.root==true %>
+        <div class="nav justify-content-end">
+          <%= link_to '社員一覧', users_path, class: "nav-link" %>
+        </div>
+      <% end %>
+      <%= image_tag @user.image, class:"rounded mx-auto d-block w-25" if @user.image.attached? %>
+      <div class='mb-3'>
+        <% unless current_user.root %>
+          <%= link_to '編集', edit_user_path, class:"btn btn-primary mr-3 shadow" %>
+          <%= link_to '削除',  @user, method: :delete, data: {confirm: "「#{@user.name}を削除してよろしいですか？"}, class:"btn btn-danger shadow" %>
+        <% end %>
+      </div>
+
+      <table class="table table-striped table-hover table-borderless shadow">
+        <tr>
+          <th><%= User.human_attribute_name(:id ) %></th>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <th class='fw-bold text-primary'><%= User.human_attribute_name(:name ) %></th>
+          <td class='fw-bold text-primary'><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:idnumber ) %></th>
+          <td><%= @user.idnumber %></td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:workplace) %></th>
+          <td><%= @user.workplace %></td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:email) %></th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>年齢</th>
+          <td><%= @user.birth ? CalcAge(@user.birth) :nil %>才</td>
+        </tr>
+        <tr>
+          <th>就業年数</th>
+          <td><%= @user.join_date ? CalcAge(@user.join_date) : nil %>年</td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:gender) %></th>
+          <td><%= @user.gender %></td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:retired) %></th>
+          <td><%= @user.retired? ? '退職者' : 'ー'%></td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:admin) %></th>
+          <td><%= @user.admin? ? '管理者' : 'ー' %></td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:created_at) %></th>
+          <td><%= @user.created_at.strftime("%Y年%m月%d日") %></td>
+        </tr>
+        <tr>
+          <th><%= User.human_attribute_name(:updated_at) %></th>
+          <td><%= @user.updated_at.strftime("%Y年%m月%d日") %></td>
+        </tr>
+      </table>
+     </div>
+  </div>
+</div>
+
+<%# <script>
+  let birthdayStr=document.getElementById('choice').textContent
+  let calcAge = function(birthdayStr){
+    if(isNaN(birthdayStr)||birthdayStr.length !== 8){
+      return -1;
+    }
+    d= new Date()
+    let dStr = ''+d.getFullYear()+('0'+(d.getMonth()+1)).slice(-2)+('0'+d.getDate()).slice(-2);
+    return Math.floor((parseInt(dStr)-parseInt(birthdayStr))/10000);
+  };
+  document.getElementById('choice').textContent=calcAge(birthdayStr);
+
+</script> %>

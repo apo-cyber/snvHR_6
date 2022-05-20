@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SnvHR6</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+  <style>
+    .table-hover tbody tr:hover td,
+    .table-hover tbody tr:hover th {
+      background-color: #e0ffff;
+    }
+  </style>
+</head>
+
+<body>
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/flash_messages' %>
+
+  <div class='container'>
+    <%= yield %>
+  </div>
+
+  <%= render 'layouts/footer' %>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<h1 class="text-center">ログイン</h1>
+
+<div class="container my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8 col-form-label">
+      <%= form_with scope: :session, local: true do |f| %>
+        <div class="form-floating mb-4">
+          <%= f.text_field :email, class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-4">
+          <%= f.password_field :password, class:"form-control", id:"floatingPassword", placeholder:"Password"%>
+          <label for="floatingPassword">Password</label>
+        </div>
+        <%= f.submit 'ログイン', class:"btn btn-primary shadow" %>
+      <% end %>
+    </div>
+  </div>
+</div>

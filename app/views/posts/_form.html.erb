@@ -1,0 +1,443 @@
+<% if post.errors.present? %>
+  <div class="alert alert-info">
+    <% post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </div>
+<% end %>
+
+<h5 class='text-danger fw-bold mb-3'><span class="badge bg-info text-dark">お約束</span>  　　以下にご記入頂く内容は、社長に直接届きます。組織長や上司は閲覧できません。</h5>
+
+<%= form_with model: post, local: true do |f| %>
+  <section>
+    <div class='form-group my-5'>
+      <h5 class='mb-1'><strong>■ 現在の主な担当業務<span class='fs-6'>（300字以内）</span>　　<span class="badge bg-danger">必須</span></strong></h5>
+      <p class='mb-1'>・現在、どのような職務を担当されていますか。</p>
+
+      <div class='form-group mt-2 mb-3 shadow'>
+        <%= f.text_area :post1 , rows: '7', class:"form-control", maxlength: '300', required: true, placeholder:'（例）剤2：成型機オペレーター、包2：箱詰め、品：原料検査、証：委託先管理' %>
+      </div>
+    </div>
+  </section>
+
+  <p class="placeholder-glow">
+    <span class="placeholder col-12 bg-success placeholder-xs"></span>
+  </p>
+
+  <section>
+    <div class='form-group my-5'>
+      <h5 class='mb-1'><strong>１． 自分の担当業務の現状　　<span class="badge bg-danger">必須</span></strong></h5>
+      <p class='mb-3'> ・下記の項目に対し、自分に当てはまる項目を選択して下さい。</p>
+
+      <div class='row border border-2 py-2'>
+        <div class='col-4 border-end border-2'>
+          <p class='fw-bold mb-1'>１）　担当業務への適正</p>
+          <div class="form-check">
+            <%= f.radio_button :post2, value="適している", id: "appropriate1", checked: "checked" %>
+            <%= f.label :適している, class: "form-check-label", for:"appropriate1" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post2, value="どちらかといえば適している", id: "appropriate2" %>
+            <%= f.label :どちらかといえば適している, class: "form-check-label", for:"appropriate2" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post2, value="どちらかといえば適していない", id: "appropriate3" %>
+            <%= f.label :どちらかといえば適していない, class: "form-check-label", for:"appropriate3" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post2, value="適していない", id: "appropriate4" %>
+            <%= f.label :適していない, class: "form-check-label", for:"appropriate4" %>
+          </div>
+        </div>
+
+        <div class='col-4 border-end border-2'>
+          <p class='fw-bold mb-1'>２）　担当業務の難易度</p>
+          <div class="form-check">
+            <%= f.radio_button :post3, value="難しい",id: "difficulty1", checked: "checked" %>
+            <%= f.label :難しい, class: "form-check-label", for:"difficulty1" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post3, value="どちらかといえば難しい", id: "difficulty2" %>
+            <%= f.label :どちらかといえば難しい, class: "form-check-label", for:"difficulty2" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post3, value="妥当", id: "difficulty3" %>
+            <%= f.label :妥当, class: "form-check-label", for:"difficulty3" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post3, value="どちらかといえば易しい", id: "difficulty4" %>
+            <%= f.label :どちらかといえば易しい, class: "form-check-label", for:"difficulty4" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post3, value="易しい", id: "difficulty5" %>
+            <%= f.label :易しい, class: "form-check-label", for:"difficulty5" %>
+          </div>
+        </div>
+
+        <div class='col-4'>
+          <p class='fw-bold mb-1'>３）　担当業務の仕事量</p>
+          <div class="form-check">
+            <%= f.radio_button :post4, value="多い", id: "workload1", checked: "checked" %>
+            <%= f.label :多い, class: "form-check-label", for:"workload1" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post4, value="どちらかといえば多い", id: "workload2" %>
+            <%= f.label :どちらかといえば多い, class: "form-check-label", for:"workload2" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post4, value="妥当", id: "workload3" %>
+            <%= f.label :妥当, class: "form-check-label", for:"workload3" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post4, value="どちらかといえば少ない", id: "workload4" %>
+            <%= f.label :どちらかといえば少ない, class: "form-check-label", for:"workload4" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post4, value="少ない", id: "workload5" %>
+            <%= f.label :少ない, class: "form-check-label", for:"workload5" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="placeholder-glow placeholder-xs">
+    <span class="placeholder col-12 bg-success placeholder-xs"></span>
+  </p>
+
+  <section>
+    <div class='form-group my-5'>
+      <h5 class='mb-1'><strong>２．今後の仕事に関する希望</strong></h5>
+      <p class='mb-3'> ・下記の項目に対し、自分に当てはまる項目を選択して下さい。</p>
+
+      <p class='fw-bold mb-2'>１）　１−３年後の具体的な希望　　<span class="badge bg-danger">必須</span></p>
+      <div class="row mb-4 border border-2 py-2">
+        <div class="form-group col-6 border-end border-2" id='desired'>
+          <div class="form-check">
+            <%= f.radio_button :post5, value="現在の担当業務を続けたい", id: "want_to_continue", checked: "checked" %>
+            <%= f.label :現在の担当業務を続けたい, class: "form-check-label", for:"want_to_continue" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post5, value="現在の担当業務を変わりたい", id: "want_to_change" %>
+            <%= f.label :現在の担当業務を変わりたい, class: "form-check-label", for:"want_to_change" %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :post5, value="どちらでも良い", id: "either_fine" %>
+            <%= f.label :どちらでも良い, class: "form-check-label", for:"either_fine" %>
+          </div>
+        </div>
+
+        <div class="col-4" id='hope_year'>
+          <%= f.label :post6, '希望年数' %>
+          <%= f.select :post6, {'1':1, '2':2,'3':3, '4':4, '5':5},
+          { include_blank: '選択してください'}, { class: 'form-control form-select form-select-sm', required: true , id:'elm_year'} %>
+        </div>
+      </div>
+
+
+      <div id='continue'>
+        <div class="my-4">
+          <div class='mb-2'>
+            <p class='fw-bold mb-2'>２）　「１」で現職を「続けたい」と回答した方のみ、「続けたい理由」を下記から選択してください。（２つまで）　　<span class="badge bg-danger">必須</span></p>
+            <%= f.select :post7, {
+              今の仕事は自分の性格に合っている: '今の仕事は自分の性格に合っている',
+              今の仕事にやりがいを感じている: '今の仕事にやりがいを感じている',
+              今の仕事は自分の専門知識や特技が生かせる: '今の仕事は自分の専門知識や特技が生かせる',
+              今の仕事（専門分野）でSNVの第一人者を目指したい: '今の仕事（専門分野）でSNVの第一人者を目指したい',
+              職場の雰囲気が良い: '職場の雰囲気が良い',
+              今の職場は自己啓発がしやすい: '今の職場は自己啓発がしやすい',
+              仕事の量がちょうど良い: '仕事の量がちょうど良い',
+              家庭と仕事の両立がしやすい: '家庭と仕事の両立がしやすい',
+              あと数年で定年を迎える: 'あと数年で定年を迎える',
+              今から新しい仕事を覚えるのは難しい: '今から新しい仕事を覚えるのは難しい',
+              その他: 'その他'},
+              { include_blank: '選択してください'}, { class: 'form-control form-select' , required: true , id:'elm_continue'} %>
+          </div>
+          <div>
+            <%= f.select :post8, {
+              今の仕事は自分の性格に合っている: '今の仕事は自分の性格に合っている',
+              今の仕事にやりがいを感じている: '今の仕事にやりがいを感じている',
+              今の仕事は自分の専門知識や特技が生かせる: '今の仕事は自分の専門知識や特技が生かせる',
+              今の仕事（専門分野）でSNVの第一人者を目指したい: '今の仕事（専門分野）でSNVの第一人者を目指したい',
+              職場の雰囲気が良い: '職場の雰囲気が良い',
+              今の職場は自己啓発がしやすい: '今の職場は自己啓発がしやすい',
+              仕事の量がちょうど良い: '仕事の量がちょうど良い',
+              家庭と仕事の両立がしやすい: '家庭と仕事の両立がしやすい',
+              あと数年で定年を迎える: 'あと数年で定年を迎える',
+              今から新しい仕事を覚えるのは難しい: '今から新しい仕事を覚えるのは難しい',
+              その他: 'その他'},
+              { include_blank: '選択してください'}, { class: 'form-control form-select' , required: false } %>
+          </div>
+        </div>
+        <div class='shadow mb-4'>
+          <%= f.text_area :post9, class: 'form-control', rows: '3', maxlength: '151', placeholder: '選択肢の中から「その他」と回答した方は、具体的理由を記載。(150字以内)' %>
+        </div>
+      </div>
+
+      <div id='change'>
+        <p class='fw-bold'> ３）「１）」で「変わりたい」と回答した方のみ、以下の設問①、②にお答えください。　　<span class="badge bg-danger">必須</span></p>
+        <div class="mb-4">
+          <p class='fw-bold'>設問①　「変わりたい」理由を下記から選択してください（２つまで）</p>
+          <div class="mb-2">
+            <%= f.select :post10, {
+              自分の専門知識や特技を生かしたい: '自分の専門知識や特技を生かしたい',
+              仕事の幅を広げたい: '仕事の幅を広げたい',
+              多くの経験を積み、能力を開発したい: '多くの経験を積み、能力を開発したい',
+              より高度な仕事がしたい: 'より高度な仕事がしたい',
+              今の仕事は難しすぎる: '今の仕事は難しすぎる',
+              今の仕事は自分の性格に合わない: '今の仕事は自分の性格に合わない',
+              今の仕事が長すぎる: '今の仕事が長すぎる',
+              上司との人間関係がうまく保てない: '上司との人間関係がうまく保てない',
+              同僚との人間関係がうまく保てない: '同僚との人間関係がうまく保てない',
+              部下との人間関係がうまく保てない: '部下との人間関係がうまく保てない',
+              職場の雰囲気が悪い: '職場の雰囲気が悪い',
+              専門分野でSNVの第一人者を目指したい: '専門分野でSNVの第一人者を目指したい',
+              その他: 'その他'},
+              { include_blank: '選択してください'}, { class: 'form-control form-select' , required: true, id:'elm_change' } %>
+          </div>
+          <div>
+            <%= f.select :post11, {
+              自分の専門知識や特技を生かしたい: '自分の専門知識や特技を生かしたい',
+              仕事の幅を広げたい: '仕事の幅を広げたい',
+              多くの経験を積み、能力を開発したい: '多くの経験を積み、能力を開発したい',
+              より高度な仕事がしたい: 'より高度な仕事がしたい',
+              今の仕事は難しすぎる: '今の仕事は難しすぎる',
+              今の仕事は自分の性格に合わない: '今の仕事は自分の性格に合わない',
+              今の仕事が長すぎる: '今の仕事が長すぎる',
+              上司との人間関係がうまく保てない: '上司との人間関係がうまく保てない',
+              同僚との人間関係がうまく保てない: '同僚との人間関係がうまく保てない',
+              部下との人間関係がうまく保てない: '部下との人間関係がうまく保てない',
+              職場の雰囲気が悪い: '職場の雰囲気が悪い',
+              専門分野でSNVの第一人者を目指したい: '専門分野でSNVの第一人者を目指したい',
+              その他: 'その他'},
+              { include_blank: '選択してください'}, { class: 'form-control form-select' , required: false } %>
+          </div>
+        </div>
+
+        <div class='mb-4'>
+          <div class='shadow'>
+            <%= f.text_area :post12, class: 'form-control', rows: '3', maxlength: '151',required: false, placeholder: '選択肢の中から「その他」と回答した方は、具体的理由を記載。(150字以内)'%>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <p class='fw-bold'> 設問②　希望する業務種別を選択してください（２つまで）。</p>
+          <div class='mb-2'>
+            <p class='fw-bold'>《第１希望》　　<span class="badge bg-danger">必須</span></p>
+            <%= f.select :post13, {
+              製造現場系ー製剤ー固形剤:'製造現場系ー製剤ー固形剤',
+              製造現場系ー製剤ー液軟剤:'製造現場系ー製剤ー液軟剤',
+              製造現場系ー包装:'製造現場系ー包装',
+              製造現場系ー倉庫・物流:'製造現場系ー倉庫・物流',
+              品質管理系ー理化学:'品質管理系ー理化学',
+              品質管理系ー微生物:'品質管理系ー微生物',
+              品質保証系:'品質保証系',
+              薬制・薬事系:'薬制・薬事系',
+              開発系ー製剤・分析:'開発系ー製剤・分析',
+              開発系ー包装:'開発系ー包装',
+              生産技術系ー製造技術:'生産技術系ー製造技術',
+              生産技術系ー設備・エンジニアリング:'生産技術系ー設備・エンジニアリング',
+              管理系ー総務:'管理系ー総務',
+              管理系ー生産管理:'管理系ー生産管理',
+              管理系ーIT・システム:'管理系ーIT・システム',
+              管理系ー経理・財務:'管理系ー経理・財務',
+              管理系ー人事・人財育成:'管理系ー人事・人財育成',
+              管理系ー戦略・企画:'管理系ー戦略・企画',
+              管理系ーEHS（安全・環境）:'管理系ーEHS（安全・環境）',
+              営業系:'営業系'},
+              { include_blank: '選択してください'}, { class: 'form-control form-select' , required: true, id:'elm_occupation'} %>
+          </div>
+          <div>
+            <p class='fw-bold'>《第２希望》</p>
+            <%= f.select :post14, {
+              製造現場系ー製剤ー固形剤:'製造現場系ー製剤ー固形剤',
+              製造現場系ー製剤ー液軟剤:'製造現場系ー製剤ー液軟剤',
+              製造現場系ー包装:'製造現場系ー包装',
+              製造現場系ー倉庫・物流:'製造現場系ー倉庫・物流',
+              品質管理系ー理化学:'品質管理系ー理化学',
+              品質管理系ー微生物:'品質管理系ー微生物',
+              品質保証系:'品質保証系',
+              薬制・薬事系:'薬制・薬事系',
+              開発系ー製剤・分析:'開発系ー製剤・分析',
+              開発系ー包装:'開発系ー包装',
+              生産技術系ー製造技術:'生産技術系ー製造技術',
+              生産技術系ー設備・エンジニアリング:'生産技術系ー設備・エンジニアリング',
+              管理系ー総務:'管理系ー総務',
+              管理系ー生産管理:'管理系ー生産管理',
+              管理系ーIT・システム:'管理系ーIT・システム',
+              管理系ー経理・財務:'管理系ー経理・財務',
+              管理系ー人事・人財育成:'管理系ー人事・人財育成',
+              管理系ー戦略・企画:'管理系ー戦略・企画',
+              管理系ーEHS（安全・環境）:'管理系ーEHS（安全・環境）',
+              営業系:'営業系'},
+            { include_blank: '選択してください'}, { class: 'form-control form-select' , required: false } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <p class='fw-bold mb-2'>４）　将来的にやりたい仕事があれば、以下の設問①、②にお答えください。　　<span class="badge bg-success">任意</span></p>
+        <p class='fw-bold'> 設問①　やりたい仕事を記入してください。(150字以内)</p>
+        <div class='mb-3 shadow'>
+          <%= f.text_area :post15, class: 'form-control', rows: '3', maxlength: '151', required: false, placeholder: '第１希望' %>
+        </div>
+        <div class='mb-3 shadow'>
+          <%= f.text_area :post16, class: 'form-control', rows: '3', maxlength: '151', required: false, placeholder: '第２希望' %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <p class='fw-bold'>設問②　「やりたい理由」を下記から選択してください（２つまで）</p>
+        <div class='mb-1'>
+          <%= f.select :post17, {
+            自分の専門知識や特技を生かしたい: '自分の専門知識や特技を生かしたい',
+            仕事の幅を広げたい: '仕事の幅を広げたい',
+            多くの経験を積み、能力を開発したい: '多くの経験を積み、能力を開発したい',
+            より高度な仕事がしたい: 'より高度な仕事がしたい',
+            専門分野でSNVの第一人者を目指したい: '専門分野でSNVの第一人者を目指したい',
+            その他: 'その他'},
+            { include_blank: '選択してください'}, { class: 'form-control form-select' , required: false} %>
+        </div>
+        <div class='mb-1'>
+          <%= f.select :post18, {
+            自分の専門知識や特技を生かしたい: '自分の専門知識や特技を生かしたい',
+            仕事の幅を広げたい: '仕事の幅を広げたい',
+            多くの経験を積み、能力を開発したい: '多くの経験を積み、能力を開発したい',
+            より高度な仕事がしたい: 'より高度な仕事がしたい',
+            専門分野でSNVの第一人者を目指したい: '専門分野でSNVの第一人者を目指したい',
+            その他: 'その他'},
+            { include_blank: '選択してください'}, { class: 'form-control form-select' , required: false } %>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class='shadow'>
+          <%= f.text_area :post19, class: 'form-control', rows: '3', maxlength: '151', required: false, placeholder: '選択肢の中から「その他」と回答した方は、具体的理由を記載。(150字以内)' %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="placeholder-glow placeholder-xs">
+    <span class="placeholder col-12 bg-success placeholder-xs"></span>
+  </p>
+
+  <section>
+    <div class='form-group my-5'>
+      <h5 class='mb-3'><strong>３．会社に知っててほしいことがあれば理由も併せて記入してください。<span class='fs-6'>（300字以内）</span>　<span class="badge bg-success">任意</span></strong></h5>
+      <div class="mb-2">
+        <p class='fw-bold'> 【知っててほしいこと】</p>
+        <div class='shadow'>
+          <%= f.text_area :post20, class: 'form-control', rows: '7', required: false, maxlength: '300', id:'area1' %>
+        </div>
+      </div>
+      <div>
+        <p class='fw-bold'> 【理　由】</p>
+        <div class='shadow'>
+          <%= f.text_area :post21, class: 'form-control', rows: '7', maxlength: '300', required: false %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="placeholder-glow placeholder-xs">
+    <span class="placeholder col-12 bg-success placeholder-xs"></span>
+  </p>
+
+  <section>
+   <div class='form-group my-5'>
+      <h5 class='mb-2'><strong>４．社への提案や要望、その他ご意見などがあればどんな事でも記入してください。<span class='fs-6'>（500字以内）</span>　　<span class="badge bg-success">任意</span></strong></h5>
+      <div class='shadow'>
+        <%= f.text_area :post22, class: 'form-control', rows: '12', maxlength: '500', required: false,  id:'area2'%>
+      </div>
+    </div>
+  </section>
+
+  <div>
+    <%=  f.hidden_field :name, value: current_user.name %>
+    <%=  f.hidden_field :workplace, value: current_user.workplace %>
+  </div>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+    <% if current_user.root == true %>
+      <%= f.submit nil, class: "btn btn-primary shadow disabled" %>
+    <% else %>
+      <%= f.submit nil, class: "btn btn-primary shadow" %>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+
+let a1 = document.getElementById("area1");
+let s1 = `（例）対人関係での悩み、ハラスメント（セクハラ・パワハラ）などの悩み
+　　　上司の支援や指導、意思疎通の不足などの不満
+　　　個人的な理由（健康など）や家庭の事情を含めて職場で配慮してほしいこと`;
+a1.placeholder = s1;
+
+let a2 = document.getElementById("area2");
+let s2 = `（例）開発型CMOとして真価を発揮するための提案や意見
+　　　女性従業員の活躍の支援についての意見
+　　　物量増加の対応に関する提案や意見
+　　　労災ゼロに向けた取り組みやRFTに対する提案や意見など
+
+　　　大勢の方からの忌憚のない意見を頂きたくお願いいたします。`;
+a2.placeholder = s2;
+
+
+const CheckBtn1 = document.getElementById('want_to_continue');
+const CheckBtn2 = document.getElementById('want_to_change');
+const CheckBtn3 = document.getElementById('either_fine');
+document.getElementById('change').hidden = true;
+
+let elm1=document.getElementById('elm_continue');
+elm1.required = true;
+let elm2=document.getElementById('elm_change');
+elm2.required = false;
+let elm3=document.getElementById('elm_occupation');
+elm3.required = false;
+let elm4=document.getElementById('elm_year');
+elm4.required = true;
+
+document.getElementById('change').hidden = true;
+
+CheckBtn1.addEventListener('change', function () {
+  document.getElementById('continue').hidden = false;
+  document.getElementById('change').hidden = true;
+  document.getElementById('hope_year').hidden = false;
+  let elm1=document.getElementById('elm_continue');
+  elm1.required = true;
+  let elm2=document.getElementById('elm_change');
+  elm2.required = false;
+  let elm3=document.getElementById('elm_occupation');
+  elm3.required = false;
+  let elm4=document.getElementById('elm_year');
+  elm4.required = true;
+});
+CheckBtn2.addEventListener('change', function () {
+  document.getElementById('continue').hidden = true;
+  document.getElementById('change').hidden = false;
+  document.getElementById('hope_year').hidden = false;
+  let elm1=document.getElementById('elm_continue');
+  elm1.required = false;
+  let elm2=document.getElementById('elm_change');
+  elm2.required = true;
+  let elm3=document.getElementById('elm_occupation');
+  elm3.required = true;
+  let elm4=document.getElementById('elm_year');
+  elm4.required = true;
+});
+
+CheckBtn3.addEventListener('change', function () {
+  document.getElementById('continue').hidden = true;
+  document.getElementById('change').hidden = true;
+  document.getElementById('hope_year').hidden = true;
+  let elm1=document.getElementById('elm_continue');
+  elm1.required = false;
+  let elm2=document.getElementById('elm_change');
+  elm2.required = false;
+  let elm3=document.getElementById('elm_occupation');
+  elm3.required = false;
+  let elm4=document.getElementById('elm_year');
+  elm4.required = false;
+});
+
+</script>

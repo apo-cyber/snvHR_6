@@ -1,0 +1,22 @@
+<% if article.errors.present? %>
+<div class="alert alert-info">
+  <% article.errors.full_messages.each do |message| %>
+  <%= message %>
+  <% end %>
+</div>
+<% end %>
+
+
+<%= form_with model: article do |form| %>
+<div class="form-group mb-3">
+  <%= form.label '日付' %>
+  <%= form.text_field :title, class:"form-control" %>
+</div>
+<div class="form-group mb-3">
+  <%= form.label '内容' %>
+  <%= form.text_area :body, class:"form-control" %>
+</div>
+<div>
+  <%= form.submit nil, class:"btn btn-primary shadow" %>
+</div>
+<% end %>

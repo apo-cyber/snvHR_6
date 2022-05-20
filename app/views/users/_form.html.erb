@@ -1,0 +1,77 @@
+<% if user.errors.present? %>
+  <div class="alert alert-info">
+    <% user.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: user, local: true do |f| %>
+  <% if current_user.HR==true %>
+    <div class="form-group mb-3">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :idnumber %>
+      <%= f.text_field :idnumber, class:"form-control" %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :email %>
+      <%= f.text_field :email, class:"form-control" %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :workplace %>
+      <%= f.text_field :workplace, class:"form-control" %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :birth %>
+      <%= f.date_field :birth, class:"form-control" %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :join_date %>
+      <%= f.date_field :join_date, class:"form-control" %>
+    </div>
+    <div class="form-check my-3">
+      <%= f.radio_button :gender, :男性, checked: "checked", id:'man' %>
+      <%= f.label :男性, class: "form-check-label", for:"man" %>
+      <%= f.radio_button :gender, :女性, id:'woman'%>
+      <%= f.label :女性, class: "form-check-label", for:"woman" %>
+    </div>
+    <div class="form-check mb-3">
+      <%= f.label :admin, class:"form_check_label" do %>
+        <%= f.check_box :admin, class:"form-check_input" %>
+        <span>管理者チェック</span>
+      <% end %>
+      <%= f.label :retired, class:"form_check_label" do %>
+        <%= f.check_box :retired, class:"form-check_input" %>
+        <span>退職者チェック</span>
+      <% end %>
+      <%= f.label :HR, class:"form_check_label" do %>
+        <%= f.check_box :HR, class:"form-check_input" %>
+        <span>HRチェック</span>
+      <% end %>
+      <%= f.label :root, class:"form_check_label" do %>
+        <%= f.check_box :root, class:"form-check_input" %>
+        <span>rootチェック</span>
+      <% end %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :image %>
+      <%= f.file_field :image, class:"form-control" %>
+    </div>
+  <% end %>
+  <% if current_user==user || @iconlabel=='new' %>
+    <div class="form-group mb-3">
+      <%= f.label :password %>
+      <%= f.password_field :password, class:"form-control" %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class:"form-control" %>
+    </div>
+  <% end %>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+    <%= f.submit nil, class:"btn btn-primary shadow" %>
+  </div>
+<% end %>

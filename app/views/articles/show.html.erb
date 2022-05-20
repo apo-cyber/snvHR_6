@@ -1,0 +1,15 @@
+<h1 class="text-center text-muted my-3">Newの内容</h1>
+<div class="my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <h5><%= @article.title %></h5>
+      <h5><%= @article.body %></h5>
+      <div class='mb-3'>
+        <%= link_to '編集', edit_article_path(@article), class: 'btn btn-primary shadow' %>
+        <%= link_to '削除', article_path(@article), class: 'btn btn-danger shadow',
+                method: :delete,
+                data: { confirm: '本当に削除しますか？' } %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<h1 class="text-center text-muted my-3">自己申告書の内容</h1>
+<div class="my-4 py-4 bg-light shadow">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <div class="nav justify-content-end">
+        <%= link_to '自己申告書の一覧', posts_path, class: "nav-link" %>
+      </div>
+      <div class='mb-3'>
+        <% unless current_user.root %>
+          <%= link_to '編集', edit_post_path(@post), class: 'btn btn-primary shadow' %>
+          <%= link_to '削除', post_path(@post), class: 'btn btn-danger shadow', method: :delete, data: {confirm: '本当に削除しますか？'} %>
+        <% end %>
+      </div>
+
+       <table class="table table-striped table-hover table-borderless shadow">
+         <tbody>
+          <thead>
+            <tr>
+              <th class="col-4 text-center">項　目</th>
+              <th class="col-4 text-center">回　答</th>
+            </tr>
+          </thead>
+          <tr>
+            <th class='fw-bold text-primary'><%= Post.human_attribute_name(:name) %></th>
+            <td class='fw-bold text-primary'><%= @post.name %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:workplace)%></th>
+            <td><%= @post.workplace %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post1)%>
+            <td><%=auto_link(simple_format(h(@post.post1), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post2)%></th>
+            <td><%= @post.post2 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post3)%></th>
+            <td><%= @post.post3 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post4)%></th>
+            <td><%= @post.post4 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post5)%></th>
+            <td><%= @post.post5 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post6)%></th>
+            <td><%= @post.post6 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post7)%></th>
+            <td><%= @post.post7 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post8)%></th>
+            <td><%= @post.post8 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post9)%></th>
+            <td><%=auto_link(simple_format(h(@post.post9), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post10)%></th>
+            <td><%= @post.post10 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post11)%></th>
+            <td><%= @post.post11 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post12)%></th>
+            <td><%=auto_link(simple_format(h(@post.post12), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post13)%></th>
+            <td><%=@post.post13 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post14)%></th>
+            <td><%= @post.post14 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post15)%></th>
+            <td><%=auto_link(simple_format(h(@post.post15), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post16)%></th>
+            <td><%=auto_link(simple_format(h(@post.post16), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post17)%></th>
+            <td><%=@post.post17 %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post18)%></th>
+            <td><%=@post.post18 %></td>
+          <tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post19)%></th>
+            <td><%=auto_link(simple_format(h(@post.post19), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post20)%></th>
+            <td><%=auto_link(simple_format(h(@post.post20), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post21)%></th>
+            <td><%=auto_link(simple_format(h(@post.post21), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:post22)%></th>
+            <td><%=auto_link(simple_format(h(@post.post22), {}, sanitize: false, wrapper_tag: "div")) %></td>
+          </tr>
+          <tr>
+            <th><%=Post.human_attribute_name(:created_at)%></th>
+            <td><%= @post.created_at.strftime("%Y年%m月%d日")  %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

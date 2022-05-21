@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  skip_before_action :login_required
+  before_action :login_required
 
   def index
     @articles = Article.order(id: :desc).first(3)

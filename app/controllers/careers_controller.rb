@@ -6,7 +6,15 @@ class CareersController < ApplicationController
       @user = User.all.where(retired: false, root: false).pluck(:id)
       @q = Career.all.where(user_id: @user).ransack(params[:q])
     elsif current_user.admin == true
-      @user = User.all.where(retired: false, admin: false, HR: false, root: false).pluck(:id)
+      @user = User.all.where(retired: false, admin:false, admin2:false, admin3:false, HR: false, root: false, workplace: current_user.workplace, workplace2: current_user.workplace2).pluck(:id)
+      @user << current_user.id
+      @q = Career.all.where(user_id: @user).ransack(params[:q])
+    elsif current_user.admin2 == true
+      @user = User.all.where(retired: false, admin2:false, admin3:false, HR: false, root: false, workplace: current_user.workplace).pluck(:id)
+      @user << current_user.id
+      @q = Career.all.where(user_id: @user).ransack(params[:q])
+    elsif current_user.admin3 == true
+      @user = User.all.where(retired: false, admin3:false, HR: false, root: false).pluck(:id)
       @user << current_user.id
       @q = Career.all.where(user_id: @user).ransack(params[:q])
     else
@@ -23,7 +31,7 @@ class CareersController < ApplicationController
   end
 
   def show
-    if current_user.root == true or current_user.HR == true or current_user.admin == true
+    if current_user.root == true or current_user.HR == true or current_user.admin == true or current_user.admin2 == true or current_user.admin3 == true
       @career=Career.find(params[:id])
     else
       @career = current_user.careers.find(params[:id])

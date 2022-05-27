@@ -5,17 +5,10 @@
       <div class="nav justify-content-end">
         <%= link_to 'キャリアプランの一覧', careers_path, class: "nav-link" %>
       </div>
+      <%= image_tag @career.user.image, class:"rounded mx-auto d-block w-25" if @career.user.image.attached? %>
       <div class='mb-3'>
-        <% unless current_user.root %>
-          <% if current_user.HR or current_user.admin %>
-            <% if @career.user==current_user %>
-              <%= link_to '編集', edit_career_path(@career), class: 'btn btn-primary shadow' %>
-              <%= link_to '削除', career_path(@career), class: 'btn btn-danger shadow', method: :delete, data: {confirm: '本当に削除しますか？'} %>
-            <% end %>
-          <% else %>
-            <%= link_to '編集', edit_career_path(@career), class: 'btn btn-primary shadow' %>
-            <%= link_to '削除', career_path(@career), class: 'btn btn-danger shadow', method: :delete, data: {confirm: '本当に削除しますか？'} %>
-          <% end %>
+        <% if current_user == @career.user %>
+        <%= link_to '編集', edit_career_path(@career), class:"btn btn-primary mr-3 shadow" %>
         <% end %>
       </div>
 
@@ -29,11 +22,14 @@
           </thead>
           <tr>
             <th class='fw-bold text-primary'><%= Career.human_attribute_name(:name) %></th>
-            <td class='fw-bold text-primary'><%= @career.name %></td>
+            <td class='fw-bold text-primary'><%= @career.name %>
+              （<%= @career.user.birth ? CalcAge(@career.user.birth) : nil  %>才）
+              勤続年数：　<%= @career.user.join_date ? CalcAge(@career.user.join_date) : nil %>年
+            </td>
           </tr>
           <tr>
             <th><%=Career.human_attribute_name(:workplace)%></th>
-            <td><%= @career.workplace %></td>
+            <td><%= @career.workplace %>　<%= @career.workplace2 %></td>
           </tr>
           <tr>
             <th><%=Career.human_attribute_name(:career1)%></th>

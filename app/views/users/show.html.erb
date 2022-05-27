@@ -2,17 +2,17 @@
 
 <div class="my-4 py-4 bg-light shadow">
   <div class="row justify-content-md-center">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <% if current_user.HR==true or current_user.root==true %>
-        <div class="nav justify-content-end">
-          <%= link_to '社員一覧', users_path, class: "nav-link" %>
-        </div>
+      <div class="nav justify-content-end">
+        <%= link_to '社員一覧', users_path, class: "nav-link" %>
+      </div>
       <% end %>
       <%= image_tag @user.image, class:"rounded mx-auto d-block w-25" if @user.image.attached? %>
       <div class='mb-3'>
         <% unless current_user.root %>
-          <%= link_to '編集', edit_user_path, class:"btn btn-primary mr-3 shadow" %>
-          <%= link_to '削除',  @user, method: :delete, data: {confirm: "「#{@user.name}を削除してよろしいですか？"}, class:"btn btn-danger shadow" %>
+        <%= link_to '編集', edit_user_path, class:"btn btn-primary mr-3 shadow" %>
+        <%= link_to '削除',  @user, method: :delete, data: {confirm: "「#{@user.name}を削除してよろしいですか？"}, class:"btn btn-danger shadow" %>
         <% end %>
       </div>
 
@@ -23,7 +23,10 @@
         </tr>
         <tr>
           <th class='fw-bold text-primary'><%= User.human_attribute_name(:name ) %></th>
-          <td class='fw-bold text-primary'><%= @user.name %></td>
+          <td class='fw-bold text-primary'>
+            <%= @user.name %> （<%= @user.birth ? CalcAge(@user.birth) : nil  %>才）　
+            勤続年数：　<%= @user.join_date ? CalcAge(@user.join_date) : nil %>年
+          </td>
         </tr>
         <tr>
           <th><%= User.human_attribute_name(:idnumber ) %></th>
@@ -31,7 +34,7 @@
         </tr>
         <tr>
           <th><%= User.human_attribute_name(:workplace) %></th>
-          <td><%= @user.workplace %></td>
+          <td><%= @user.workplace%>　<%= @user.workplace2%></td>
         </tr>
         <tr>
           <th><%= User.human_attribute_name(:email) %></th>
@@ -66,7 +69,7 @@
           <td><%= @user.updated_at.strftime("%Y年%m月%d日") %></td>
         </tr>
       </table>
-     </div>
+    </div>
   </div>
 </div>
 

@@ -1,12 +1,12 @@
 <% if career.errors.present? %>
-  <div class="alert alert-info">
-    <% career.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </div>
+<div class="alert alert-info">
+  <% career.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</div>
 <% end %>
 
-<h5 class='text-danger fw-bold mb-3'><span class="badge bg-info text-dark">ご確認</span>  　　以下にご記入頂く内容は、管理職が閲覧できます。</h5>
+<h5 class='text-danger fw-bold mb-3'><span class="badge bg-info text-dark">ご確認</span> 　　以下にご記入頂く内容は、管理職が閲覧できます。</h5>
 
 <div class="card shadow">
   <div class="card-header">
@@ -14,7 +14,7 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">氏　　名：　　<%= current_user.name %></li>
-    <li class="list-group-item">所属部署：　　<%= current_user.workplace %></li>
+    <li class="list-group-item">所属部署：　　<%= current_user.workplace %>　<%= current_user.workplace2 %></li>
     <li class="list-group-item">年　　齢：　　<%= current_user.birth ? CalcAge(current_user.birth) : nil  %>才</li>
     <li class="list-group-item">勤続年数：　　<%= current_user.join_date ? CalcAge(current_user.join_date) : nil %>年 </li>
     <li class="list-group-item">性　　別：　　<%= current_user.gender %></li>
@@ -22,135 +22,101 @@
 </div>
 
 <%= form_with model: career, local: true do |f| %>
-  <section>
-    <div class='form-group my-5'>
-      <h5 class='mb-1'><strong>■ STEP1：自分の過去を棚卸する<span class='fs-6'>（300字以内）</span>　　<span class="badge bg-danger">必須</span></strong></h5>
-      <p class='mb-1'>まずは過去の経験を振り返ることで、自分自身への理解を深める</p>
-      <p class='mb-1'>価値観、興味、関心事項等</p>
-      <div class='form-group mt-2 mb-3 shadow'>
-        <%= f.text_area :career1, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '大事にしたい価値観、興味、関心を持っていることなどを記入' %>
-      </div>
+<section>
+  <div class='form-group my-5'>
+    <h5 class='mb-1'><strong>■ STEP1：自分の過去を棚卸する<span class='fs-6'>（300字以内）</span>　　<span
+          class="badge bg-danger">必須</span></strong></h5>
+    <p class='mb-1'>まずは過去の経験を振り返ることで、自分自身への理解を深める</p>
+    <p class='mb-1'>価値観、興味、関心事項等</p>
+    <div class='form-group mt-2 mb-3 shadow'>
+      <%= f.text_area :career1, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '大事にしたい価値観、興味、関心を持っていることなどを記入' %>
     </div>
-  </section>
-
-  <section>
-    <div class='form-group my-5'>
-      <h5 class='mb-1'><strong>■ STEP2：自分の現在の状況を理解する<span class='fs-6'>（300字以内）</span>　　<span class="badge bg-danger">必須</span></strong></h5>
-      <p class='mb-1'>自分の現状を理解するため、自らを取り巻く環境を整理する</p>
-      <p class='mb-1'>希望する組織の方向性や業界内での立ち位置の把握、組織から期待されている役割、組織に対して自分が提供している価値などを理解する</p>
-      <div class='form-group mt-2 mb-3 shadow'>
-        <%= f.text_area :career2, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '自分の強み、弱みを克服するために努力していることなどを記入' %>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class='form-group my-5'>
-      <h5 class='mb-1'><strong>■ STEP3：自分の将来を考える<span class='fs-6'>（300字以内）</span>　　<span class="badge bg-danger">必須</span></strong></h5>
-      <p class='mb-1'>価値観や現状をもとにして、将来どんなキャリアを築いていたいのかを明文化する（キャリアビジョンの設定）</p>
-      <p class='mb-1'>将来取り組みたい仕事や働き方等</p>
-
-      <p class='mb-0'><strong>【1-3年後】　　</strong></p>
-      <div class='form-group mb-3 shadow'>
-        <%= f.text_area :career3, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '今後やってみたい仕事（職種）や働き方、仕事で達成したいことなどを記入'%>
-      </div>
-
-      <p class='mb-0'><strong>【5年後】　　</strong></p>
-      <div class='form-group mb-3 shadow'>
-        <%= f.text_area :career4, class: 'form-control', rows: '7', maxlength: '300', required: true %>
-      </div>
-
-      <p class='mb-0'><strong>【10年後】　　</strong></p>
-      <div class='form-group mb-3 shadow'>
-        <%= f.text_area :career5, class: 'form-control', rows: '7', maxlength: '300', required: true %>
-      </div>
-      <p class='mb-1'><strong>希望する業務種別（第1希望）</strong></p>
-      <%= f.select :career6, {
-        製造現場系ー製剤ー固形剤:'製造現場系ー製剤ー固形剤',
-        製造現場系ー製剤ー液軟剤:'製造現場系ー製剤ー液軟剤',
-        製造現場系ー包装:'製造現場系ー包装',
-        製造現場系ー倉庫・物流:'製造現場系ー倉庫・物流',
-        品質管理系ー理化学:'品質管理系ー理化学',
-        品質管理系ー微生物:'品質管理系ー微生物',
-        品質保証系:'品質保証系',
-        薬制・薬事系:'薬制・薬事系',
-        開発系ー製剤・分析:'開発系ー製剤・分析',
-        開発系ー包装:'開発系ー包装',
-        生産技術系ー製造技術:'生産技術系ー製造技術',
-        生産技術系ー設備・エンジニアリング:'生産技術系ー設備・エンジニアリング',
-        管理系ー総務:'管理系ー総務',
-        管理系ー生産管理:'管理系ー生産管理',
-        管理系ーIT・システム:'管理系ーIT・システム',
-        管理系ー経理・財務:'管理系ー経理・財務',
-        管理系ー人事・人財育成:'管理系ー人事・人財育成',
-        管理系ー戦略・企画:'管理系ー戦略・企画',
-        管理系ーEHS（安全・環境）:'管理系ーEHS（安全・環境）',
-        営業系:'営業系'},
-        { include_blank: '選択してください'}, { class: 'form-control form-select' , required: true } %>
-      <p class='mb-1'><strong>希望する業務種別（第2希望）</strong></p>
-      <%= f.select :career7, {
-        製造現場系ー製剤ー固形剤:'製造現場系ー製剤ー固形剤',
-        製造現場系ー製剤ー液軟剤:'製造現場系ー製剤ー液軟剤',
-        製造現場系ー包装:'製造現場系ー包装',
-        製造現場系ー倉庫・物流:'製造現場系ー倉庫・物流',
-        品質管理系ー理化学:'品質管理系ー理化学',
-        品質管理系ー微生物:'品質管理系ー微生物',
-        品質保証系:'品質保証系',
-        薬制・薬事系:'薬制・薬事系',
-        開発系ー製剤・分析:'開発系ー製剤・分析',
-        開発系ー包装:'開発系ー包装',
-        生産技術系ー製造技術:'生産技術系ー製造技術',
-        生産技術系ー設備・エンジニアリング:'生産技術系ー設備・エンジニアリング',
-        管理系ー総務:'管理系ー総務',
-        管理系ー生産管理:'管理系ー生産管理',
-        管理系ーIT・システム:'管理系ーIT・システム',
-        管理系ー経理・財務:'管理系ー経理・財務',
-        管理系ー人事・人財育成:'管理系ー人事・人財育成',
-        管理系ー戦略・企画:'管理系ー戦略・企画',
-        管理系ーEHS（安全・環境）:'管理系ーEHS（安全・環境）',
-        営業系:'営業系'},
-        { include_blank: '選択してください'}, { class: 'form-control form-select' , required: true } %>
-    </div>
-  </section>
-
-  <section>
-    <div class='form-group my-5'>
-      <h5 class='mb-1'><strong>■ STEP４：将来と現在を繋ぐ道筋を作成する<span class='fs-6'>（300字以内）</span>　　<span class="badge bg-danger">必須</span></strong></h5>
-      <p class='mb-1'>理想のキャリアに到達するための道のりを整理し、具体的な計画に落とし込む</p>
-      <p class='mb-1'>「なりたい自分」に対して、今の自分にはどんな点が足りていないのか、今後伸ばすべき能力は何か、必要なスキルを身につけるためにはどうすればいいかを考える</p>
-
-      <div class='form-group mt-2 mb-3 shadow'>
-        <%= f.text_area :career8, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '今後の向上・習得すべき職業能力や、その方法などを記入'  %>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class='form-group my-3'>
-      <h5 class='mb-1'><strong>■ 人事担当へのご意見等、ご自由にお書き下さい。<span class='fs-6'>（300字以内）</span>　　<span class="badge bg-success">任意</span></strong></h5>
-      <div class='form-group mt-2 mb-3 shadow'>
-        <%= f.text_area :career9, class: 'form-control', rows: '7', maxlength: '300' %>
-      </div>
-    </div>
-  </section>
-
-  <section>
-
-  </section>
-
-  <div class='form-group mb-3'>
-    <%= f.hidden_field :name, value: current_user.name %>
-    <%= f.hidden_field :workplace, value: current_user.workplace %>
   </div>
+</section>
 
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-    <% if current_user.root == true %>
-      <%= f.submit nil, class: "btn btn-primary shadow disabled" %>
-    <% else %>
-      <%= f.submit nil, class: "btn btn-primary shadow" %>
-    <% end %>
-
-
+<section>
+  <div class='form-group my-5'>
+    <h5 class='mb-1'><strong>■ STEP2：自分の現在の状況を理解する<span class='fs-6'>（300字以内）</span>　　<span
+          class="badge bg-danger">必須</span></strong></h5>
+    <p class='mb-1'>自分の現状を理解するため、自らを取り巻く環境を整理する</p>
+    <p class='mb-1'>希望する組織の方向性や業界内での立ち位置の把握、組織から期待されている役割、組織に対して自分が提供している価値などを理解する</p>
+    <div class='form-group mt-2 mb-3 shadow'>
+      <%= f.text_area :career2, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '自分の強み、弱みを克服するために努力していることなどを記入' %>
+    </div>
   </div>
+</section>
+
+<section>
+  <div class='form-group my-5'>
+    <h5 class='mb-1'><strong>■ STEP3：自分の将来を考える<span class='fs-6'>（300字以内）</span>　　<span
+          class="badge bg-danger">必須</span></strong></h5>
+    <p class='mb-1'>価値観や現状をもとにして、将来どんなキャリアを築いていたいのかを明文化する（キャリアビジョンの設定）</p>
+    <p class='mb-1'>将来取り組みたい仕事や働き方等</p>
+
+    <p class='mb-0'><strong>【1-3年後】　　</strong></p>
+    <div class='form-group mb-3 shadow'>
+      <%= f.text_area :career3, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '今後やってみたい仕事（職種）や働き方、仕事で達成したいことなどを記入'%>
+    </div>
+
+    <p class='mb-0'><strong>【5年後】　　</strong></p>
+    <div class='form-group mb-3 shadow'>
+      <%= f.text_area :career4, class: 'form-control', rows: '7', maxlength: '300', required: true %>
+    </div>
+
+    <p class='mb-0'><strong>【10年後】　　</strong></p>
+    <div class='form-group mb-3 shadow'>
+      <%= f.text_area :career5, class: 'form-control', rows: '7', maxlength: '300', required: true %>
+    </div>
+    <p class='mb-1'><strong>希望する業務種別（第1希望）</strong></p>
+    <%= f.select :career6, c67,
+        { include_blank: '選択してください'}, { class: 'form-control form-select' , required: true } %>
+    <p class='mb-1'><strong>希望する業務種別（第2希望）</strong></p>
+    <%= f.select :career7, c67,
+        { include_blank: '選択してください'}, { class: 'form-control form-select' , required: true } %>
+  </div>
+</section>
+
+<section>
+  <div class='form-group my-5'>
+    <h5 class='mb-1'><strong>■ STEP４：将来と現在を繋ぐ道筋を作成する<span class='fs-6'>（300字以内）</span>　　<span
+          class="badge bg-danger">必須</span></strong></h5>
+    <p class='mb-1'>理想のキャリアに到達するための道のりを整理し、具体的な計画に落とし込む</p>
+    <p class='mb-1'>「なりたい自分」に対して、今の自分にはどんな点が足りていないのか、今後伸ばすべき能力は何か、必要なスキルを身につけるためにはどうすればいいかを考える</p>
+
+    <div class='form-group mt-2 mb-3 shadow'>
+      <%= f.text_area :career8, class: 'form-control', rows: '7', maxlength: '300', required: true, placeholder: '今後の向上・習得すべき職業能力や、その方法などを記入'  %>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class='form-group my-3'>
+    <h5 class='mb-1'><strong>■ 人事担当へのご意見等、ご自由にお書き下さい。<span class='fs-6'>（300字以内）</span>　　<span
+          class="badge bg-success">任意</span></strong></h5>
+    <div class='form-group mt-2 mb-3 shadow'>
+      <%= f.text_area :career9, class: 'form-control', rows: '7', maxlength: '300' %>
+    </div>
+  </div>
+</section>
+
+<section>
+
+</section>
+
+<div class='form-group mb-3'>
+  <%= f.hidden_field :name, value: current_user.name %>
+  <%= f.hidden_field :workplace, value: current_user.workplace %>
+  <%= f.hidden_field :workplace2, value: current_user.workplace2 %>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+  <% if current_user.root == true %>
+  <%= f.submit nil, class: "btn btn-primary shadow disabled" %>
+  <% else %>
+  <%= f.submit nil, class: "btn btn-primary shadow" %>
+  <% end %>
+
+
+</div>
 
 <% end %>

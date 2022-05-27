@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_20_230555) do
+ActiveRecord::Schema.define(version: 2022_05_24_072126) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_230555) do
     t.text "career7"
     t.text "career8"
     t.text "career9"
+    t.string "workplace2"
     t.index ["user_id"], name: "index_careers_on_user_id"
   end
 
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_230555) do
     t.integer "user_id", null: false
     t.text "post21"
     t.text "post22"
+    t.string "workplace2"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -111,6 +113,9 @@ ActiveRecord::Schema.define(version: 2022_05_20_230555) do
     t.date "birth"
     t.date "join_date"
     t.integer "gender"
+    t.boolean "admin2", default: false, null: false
+    t.boolean "admin3", default: false, null: false
+    t.string "workplace2"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

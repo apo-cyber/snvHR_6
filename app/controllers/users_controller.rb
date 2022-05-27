@@ -21,11 +21,9 @@ class UsersController < ApplicationController
 
   def new
     @user=User.new
-    @iconlabel='new'
   end
 
   def edit
-    @iconlabel=nil
   end
 
   def create

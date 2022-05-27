@@ -2,12 +2,12 @@
 <div class="my-4 py-4 bg-light shadow">
   <div class="row justify-content-md-center">
     <div class="col-md-10">
-    <h2>閲覧者名：<%= current_user.name %></h2>
+      <h2>閲覧者名：<%= current_user.name %></h2>
       <% unless current_user.root %>
-        <%= link_to '新規登録', new_user_path, class:"btn btn-success my-2 shadow" %>
+      <%= link_to '新規登録', new_user_path, class:"btn btn-success my-2 shadow" %>
       <% end %>
 
-    <%= search_form_for @q, class: 'mb-1' do |f| %>
+      <%= search_form_for @q, class: 'mb-1' do |f| %>
       <div class="row justify-content-md-center py-1">
         <div class="col-md-2">
           <%= image_tag '/sc.svg', size:'30x30'  %>
@@ -17,49 +17,59 @@
           <%= f.search_field :name_or_idnumber_cont, class: 'form-control ', placeholder: '（例）社員番号、社員名　など' %>
         </div>
       </div>
-    <% end %>
-    <div class="mt-4 pagination flex-wrap">
-      <%= paginate  @users, theme: 'bootstrap-5' %>
-    </div>
-    <table class="table table-striped table-hover table-borderless shadow">
-      <thead>
-        <tr>
-          <th scope="col", class='text-center'>作成履歴</th>
-          <th scope="col", class='text-center'><%= sort_link(@q, :idnumber) %></th>
-          <th scope="col", class='text-center'><%= sort_link(@q, :name) %></th>
-          <th scope="col", class='text-center'><%= sort_link(@q, :admin) %></th>
-          <th scope="col", class='text-center'><%= sort_link(@q, :retired, [:retired, 'created_at desc']) %></th>
-          <th scope="col", class='text-center'><%= sort_link(@q, :created_at, defalut_order: :desc) %></th>
-          <% unless current_user.root %>
-            <th scope="col", class='text-center'>操作</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
+      <% end %>
+      <div class="mt-4 pagination flex-wrap">
+        <%= paginate  @users, theme: 'bootstrap-5' %>
+      </div>
+      <table class="table table-striped table-hover table-borderless shadow">
+        <thead>
+          <tr>
+            <th scope="col" , class='text-center'>作成履歴</th>
+            <th scope="col" , class='text-center'><%= sort_link(@q, :idnumber) %></th>
+            <th scope="col" , class='text-center'><%= sort_link(@q, :name) %></th>
+            <th scope="col" , class='text-center'>管理者</th>
+            <th scope="col" , class='text-center'><%= sort_link(@q, :retired, [:retired, 'created_at desc']) %></th>
+            <th scope="col" , class='text-center'><%= sort_link(@q, :created_at, defalut_order: :desc) %></th>
+            <% unless current_user.root %>
+            <th scope="col" , class='text-center'>操作</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
           <tr>
             <td class='text-center'> <%= link_to '詳細' , user_path(user), class: 'btn btn-primary shadow' %></td>
             <td class='text-center'> <%= user.idnumber %></td>
             <td class='text-center'> <%= user.name %></td>
-            <td class='text-center'> <%= user.admin? ? 'あり' : 'なし' %></td>
+            <div>
+              <% if user.admin %>
+              <td class='text-center'>課長</td>
+              <% elsif user.admin2 %>
+              <td class='text-center'>部長</td>
+              <% elsif user.admin3 %>
+              <td class='text-center'>役員</td>
+              <% else %>
+              <td class='text-center'>　</td>
+              <% end %>
+            </div>
             <td class='text-center'> <%= user.retired? ? '退職者' : 'ー' %></td>
             <td class='text-center'> <%= user.created_at.strftime("%Y年%m月%d日") %></td>
             <td class='text-center'>
               <% unless current_user.root %>
-                <%= link_to '編集', edit_user_path(user), class:"btn btn-primary mr-3 shadow" %>
-                <%= link_to '退職', retired_user_path(user), method: :post, class:"btn btn-success mr-3 shadow" %>
-                <%= link_to '削除', user, method: :delete, data: {confirm: "タスク「#{user.name}」を削除してよろしいですか？"}, class:"btn btn-danger shadow" %>
+              <%= link_to '編集', edit_user_path(user), class:"btn btn-primary mr-3 shadow" %>
+              <%= link_to '退職', retired_user_path(user), method: :post, class:"btn btn-success mr-3 shadow" %>
+              <%= link_to '削除', user, method: :delete, data: {confirm: "タスク「#{user.name}」を削除してよろしいですか？"}, class:"btn btn-danger shadow" %>
               <% end %>
             </td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <% end %>
+        </tbody>
+      </table>
 
-    <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
-      <%= image_tag '/output.png', size:'40x40'  %>
-      <%= link_to 'エクスポート', users_path(format: :csv), class:"btn btn-secondary mb-3 shadow" %>
-    </div>
+      <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
+        <%= image_tag '/output.png', size:'40x40'  %>
+        <%= link_to 'エクスポート', users_path(format: :csv), class:"btn btn-secondary mb-3 shadow" %>
+      </div>
     </div>
   </div>
 </div>

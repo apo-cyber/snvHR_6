@@ -17,6 +17,8 @@ CSV.foreach('db/seeds/workers.csv', headers: true) do |row|
     email: row['email'],
     password: row['password'],
     admin: row['admin'],
+    admin2: row['admin2'],
+    admin3: row['admin3'],
     HR: row['HR'],
     root: row['root'],
     birth: row['birth'],

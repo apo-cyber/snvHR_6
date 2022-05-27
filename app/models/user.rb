@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def self.csv_attributes
-    ["idnumber", "name", "workplace", "email", "birth", "join_date", "gender", "retired", "admin", "root", "HR","created_at", "updated_at"]
+    ["idnumber", "name", "workplace", "workplace2","email", "birth", "join_date", "gender", "retired", "admin", "admin2","admin3","root", "HR","created_at", "updated_at"]
   end
 
   def self.generate_csv

@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(User.column_names.map{|c| c.to_sym} + %i(image))
+      params.require(:user).permit(User.column_names.map{|c| c.to_sym} + %i(passeord password password_confirmation image))
     end
 
     def set_user
